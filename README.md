@@ -60,7 +60,7 @@ This is the simplified version of Nanos(http://cslab.nju.edu.cn/opsystem). It is
 
 ## typing game
 
-This is a fork of the demo of NJU 2013 oslab0(the repository has been deleted). It is ported to NEMU.
+This is a fork of the demo of NJU 2013 oslab0(the origin repository has been deleted, but we have a fork of it -- https://github.com/nju-ics/os-lab0). It is ported to NEMU.
 
 ## NEMU-PAL
 
