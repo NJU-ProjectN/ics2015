@@ -12,11 +12,15 @@ long long ans[] = { 1860719719092984036LL, -1579188499418773362LL, 2758992986934
 
 int main() {
 	int i,j,ans_idx = 0;
+	int loop = 0;
 	for (i = 0;i < NR_DATA;i++) {
 		for (j = i;j < NR_DATA;j++) { 
 			nemu_assert(ans[ans_idx++] == mul(test_data[i],test_data[j]));
+			loop ++;
 		}
 	}
+
+	nemu_assert(loop == NR_DATA * (NR_DATA + 1) / 2);
 
 	HIT_GOOD_TRAP;
 
