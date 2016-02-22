@@ -8,7 +8,6 @@
 #include <sys/time.h>
 #include <signal.h>
 
-extern uint8_t fontdata_8x16[128][16];
 SDL_Surface *real_screen;
 SDL_Surface *screen;
 uint8_t (*pixel_buf) [SCREEN_COL];
@@ -17,14 +16,34 @@ uint8_t (*pixel_buf) [SCREEN_COL];
 
 static uint64_t jiffy = 0;
 static struct itimerval it;
+static int device_update_flag = false;
+static int update_screen_flag = false;
 extern void timer_intr();
 extern void keyboard_intr();
 extern void update_screen();
-static void device_update(int signum) {
+
+static void timer_sig_handler(int signum) {
 	jiffy ++;
 	timer_intr();
+
+	device_update_flag = true;
 	if(jiffy % (TIMER_HZ / VGA_HZ) == 0) {
+		update_screen_flag = true;
+	}
+
+	int ret = setitimer(ITIMER_VIRTUAL, &it, NULL);
+	Assert(ret == 0, "Can not set timer");
+}
+
+void device_update() {
+	if(!device_update_flag) {
+		return;
+	}
+	device_update_flag = false;
+
+	if(update_screen_flag) {
 		update_screen();
+		update_screen_flag = false;
 	}
 
 	SDL_Event event;
@@ -45,9 +64,6 @@ static void device_update(int signum) {
 			exit(0);
 		}
 	}
-
-	int ret = setitimer(ITIMER_VIRTUAL, &it, NULL);
-	Assert(ret == 0, "Can not set timer");
 }
 
 void sdl_clear_event_queue() {
@@ -76,7 +92,7 @@ void init_sdl() {
 
 	struct sigaction s;
 	memset(&s, 0, sizeof(s));
-	s.sa_handler = device_update;
+	s.sa_handler = timer_sig_handler;
 	ret = sigaction(SIGVTALRM, &s, NULL);
 	Assert(ret == 0, "Can not set signal handler");
 
