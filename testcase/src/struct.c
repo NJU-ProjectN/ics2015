@@ -25,6 +25,8 @@ int main() {
 		nemu_assert(t.pad2[i] == i);
 	}
 
+	nemu_assert(i == N);
+
 	HIT_GOOD_TRAP;
 
 	return 0;

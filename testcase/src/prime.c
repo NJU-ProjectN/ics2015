@@ -19,6 +19,7 @@ int main() {
 		}
 	}
 
+	nemu_assert(m == 201);
 	nemu_assert(n == 21);
 
 	HIT_GOOD_TRAP;

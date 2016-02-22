@@ -30,6 +30,8 @@ int main() {
 		nemu_assert(gotbaha(n) == 1);
 	}
 
+	nemu_assert(n == 102);
+
 	HIT_GOOD_TRAP;
 
 	return 0;
