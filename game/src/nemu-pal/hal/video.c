@@ -152,7 +152,7 @@ void SDL_FreeSurface(SDL_Surface *s) {
 			free(s->format);
 		}
 		
-		if(s->pixels != NULL) {
+		if(s->pixels != NULL && s->pixels != VMEM_ADDR) {
 			free(s->pixels);
 		}
 
