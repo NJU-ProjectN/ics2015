@@ -7,7 +7,7 @@
 
 int get_fps();
 
-void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *scrrect, 
+void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, 
 		SDL_Surface *dst, SDL_Rect *dstrect) {
 	assert(dst && src);
 
@@ -86,13 +86,13 @@ void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors,
 
 /* ======== The following functions are already implemented. ======== */
 
-void SDL_SoftStretch(SDL_Surface *src, SDL_Rect *scrrect, 
+void SDL_SoftStretch(SDL_Surface *src, SDL_Rect *srcrect, 
 		SDL_Surface *dst, SDL_Rect *dstrect) {
 	assert(src && dst);
-	int x = (scrrect == NULL ? 0 : scrrect->x);
-	int y = (scrrect == NULL ? 0 : scrrect->y);
-	int w = (scrrect == NULL ? src->w : scrrect->w);
-	int h = (scrrect == NULL ? src->h : scrrect->h);
+	int x = (srcrect == NULL ? 0 : srcrect->x);
+	int y = (srcrect == NULL ? 0 : srcrect->y);
+	int w = (srcrect == NULL ? src->w : srcrect->w);
+	int h = (srcrect == NULL ? src->h : srcrect->h);
 
 	assert(dstrect);
 	if(w == dstrect->w && h == dstrect->h) {
