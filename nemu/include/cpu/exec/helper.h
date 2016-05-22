@@ -6,7 +6,7 @@
 
 #define make_helper_v(name) \
 	make_helper(concat(name, _v)) { \
-		return (ops_decoded.is_data_size_16 ? concat(name, _w) : concat(name, _l)) (eip); \
+		return (ops_decoded.is_operand_size_16 ? concat(name, _w) : concat(name, _l)) (eip); \
 	}
 
 #define do_execute concat4(do_, instr, _, SUFFIX)
