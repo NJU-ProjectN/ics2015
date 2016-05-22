@@ -27,16 +27,4 @@ out_long(uint16_t port, uint32_t data) {
 	asm volatile("out %%eax, %%dx" : : "a"(data), "d"(port));
 }
 
-static inline uint16_t
-in_word(uint16_t port) {
-	uint16_t data;
-	asm volatile("in %1, %0" : "=a"(data) : "d"(port));
-	return data;
-}
-
-static inline void
-out_word(uint16_t port, uint16_t data) {
-	asm volatile("out %%al, %%dx" : : "a"(data), "d"(port));
-}
-
 #endif
