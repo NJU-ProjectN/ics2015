@@ -6,7 +6,7 @@
 #define SCR_SIZE (320 * 200)
 
 /* Use the function to get the start address of user page directory. */
-inline PDE* get_updir();
+PDE* get_updir();
 
 void create_video_mapping() {
 	/* TODO: create an identical mapping from virtual memory area 
