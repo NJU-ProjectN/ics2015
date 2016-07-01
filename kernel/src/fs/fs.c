@@ -9,7 +9,7 @@ typedef struct {
 enum {SEEK_SET, SEEK_CUR, SEEK_END};
 
 /* This is the information about all files in disk. */
-static const file_info file_table[] = {
+static const file_info file_table[] __attribute__((used)) = {
 	{"1.rpg", 188864, 1048576}, {"2.rpg", 188864, 1237440},
 	{"3.rpg", 188864, 1426304}, {"4.rpg", 188864, 1615168},
 	{"5.rpg", 188864, 1804032}, {"abc.mkf", 1022564, 1992896},
